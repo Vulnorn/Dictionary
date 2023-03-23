@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-//Создать программу, которая принимает от пользователя слово и выводит его значение. Если такого слова нет, то следует вывести соответствующее сообщение.
 
 namespace Biblioteka
 {
@@ -13,11 +11,9 @@ namespace Biblioteka
             const int ConsoleAddWord = 1;
             const int ConsoleOutputMeaningOfWord = 2;
             const int ConsoleExit = 3;
-            bool isWork = true;
 
+            bool isWork = true;
             int userChoice;
-            string userInputWord;
-            string userInputMeanindOfWord;
 
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
@@ -34,30 +30,7 @@ namespace Biblioteka
                         break;
 
                     case ConsoleOutputMeaningOfWord:
-                        Console.Clear();
-
-                        if (dictionary.LongCount() == 0)
-                        {
-                            Console.WriteLine($"Словарь пустой, заполните словарь!");
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            Console.Write($"Показать значение слова: ");
-                            userInputWord = Console.ReadLine();
-
-                            if (dictionary.ContainsKey(userInputWord))
-                            {
-                                Console.Write($"\\n{dictionary[userInputWord]}");
-                                Console.ReadKey();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Нет такого слова");
-                                Console.ReadKey();
-                            }
-                        }
-
+                        FindMeaningOfWord(dictionary);
                         break;
 
                     case ConsoleExit:
@@ -68,18 +41,48 @@ namespace Biblioteka
                         break;
                 }
             }
+        }
 
-            static void AddWord(Dictionary<string,string> createDictionary)
+        static void AddWord(Dictionary<string, string> createDictionary)
+        {
+            string userCreateWord;
+            string userCreateMeanindOfWord;
+
+            Console.Clear();
+            Console.WriteLine($"Введите слово:");
+            userCreateWord = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine($"Введите значение для этого слова:");
+            userCreateMeanindOfWord = Console.ReadLine();
+            createDictionary.Add(userCreateWord, userCreateMeanindOfWord);
+        }
+
+        static void FindMeaningOfWord(Dictionary<string, string> createDictionary)
+        {
+            string userInputWord;
+
+            Console.Clear();
+
+            if (createDictionary.LongCount() == 0)
             {
-                string userCreateWord;
-                string userCreateMeanindOfWord;
-                Console.Clear();
-                Console.WriteLine($"Введите слово:");
-                userCreateWord = Console.ReadLine();
-                Console.Clear();
-                Console.WriteLine($"Введите значение для этого слова:");
-                userCreateMeanindOfWord = Console.ReadLine();
-                createDictionary.Add(userCreateWord, userCreateMeanindOfWord);
+                Console.WriteLine($"Словарь пустой, заполните словарь!");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Write($"Показать значение слова: ");
+                userInputWord = Console.ReadLine();
+
+                if (createDictionary.ContainsKey(userInputWord))
+                {
+                    Console.Write($"\\n{createDictionary[userInputWord]}");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Нет такого слова");
+                    Console.ReadKey();
+                }
             }
         }
     }
