@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+//Создать программу, которая принимает от пользователя слово и выводит его значение. Если такого слова нет, то следует вывести соответствующее сообщение.
 
 namespace Biblioteka
 {
@@ -66,19 +68,19 @@ namespace Biblioteka
                         break;
                 }
             }
-        }
 
-        private static void AddWord(Dictionary<string, string> createDictionary)
-        {
-            string userCreateWord;
-            string userCreateMeanindOfWord;
-            Console.Clear();
-            Console.WriteLine($"Введите слово:");
-            userCreateWord = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine($"Введите значение для этого слова:");
-            userCreateMeanindOfWord = Console.ReadLine();
-            createDictionary.Add(userCreateWord, userCreateMeanindOfWord);
+            static void AddWord(Dictionary<string,string> createDictionary)
+            {
+                string userCreateWord;
+                string userCreateMeanindOfWord;
+                Console.Clear();
+                Console.WriteLine($"Введите слово:");
+                userCreateWord = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine($"Введите значение для этого слова:");
+                userCreateMeanindOfWord = Console.ReadLine();
+                createDictionary.Add(userCreateWord, userCreateMeanindOfWord);
+            }
         }
     }
-}   
+}
