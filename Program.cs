@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-//Создать программу, которая принимает от пользователя слово и выводит его значение. Если такого слова нет, то следует вывести соответствующее сообщение.
 
 namespace Biblioteka
 {
@@ -18,28 +16,19 @@ namespace Biblioteka
             int userChoice;
             string userInputWord;
             string userInputMeanindOfWord;
-            string word;
-            string meanindOfWord;
 
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
             while (isWork)
             {
                 Console.Clear();
-                Console.CursorVisible = false;
                 Console.WriteLine($"\n{ConsoleAddWord}. Добавить слово со значением. \n\n{ConsoleOutputMeaningOfWord}. Вывести значение для слова.\n\n{ConsoleExit}. Выход.");
                 userChoice = Convert.ToInt32(Console.ReadLine());
 
                 switch (userChoice)
                 {
                     case ConsoleAddWord:
-                        Console.Clear();
-                        Console.WriteLine($"Введите слово:");
-                        userInputWord = Console.ReadLine();
-                        Console.Clear();
-                        Console.WriteLine($"Введите значение для этого слова:");
-                        userInputMeanindOfWord = Console.ReadLine();
-                        dictionary.Add(userInputWord, userInputMeanindOfWord);
+                        AddWord(dictionary);
                         break;
 
                     case ConsoleOutputMeaningOfWord:
@@ -58,10 +47,12 @@ namespace Biblioteka
                             if (dictionary.ContainsKey(userInputWord))
                             {
                                 Console.Write($"\\n{dictionary[userInputWord]}");
+                                Console.ReadKey();
                             }
                             else
                             {
                                 Console.WriteLine("Нет такого слова");
+                                Console.ReadKey();
                             }
                         }
 
@@ -76,5 +67,18 @@ namespace Biblioteka
                 }
             }
         }
+
+        private static void AddWord(Dictionary<string, string> createDictionary)
+        {
+            string userCreateWord;
+            string userCreateMeanindOfWord;
+            Console.Clear();
+            Console.WriteLine($"Введите слово:");
+            userCreateWord = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine($"Введите значение для этого слова:");
+            userCreateMeanindOfWord = Console.ReadLine();
+            createDictionary.Add(userCreateWord, userCreateMeanindOfWord);
+        }
     }
-}
+}   
