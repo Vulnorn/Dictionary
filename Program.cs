@@ -38,12 +38,13 @@ namespace Biblioteka
                         break;
 
                     default:
+                        ReportAnError("");
                         break;
                 }
             }
         }
 
-        static void AddWord(Dictionary<string, string> createDictionary)
+        static void AddWord(Dictionary<string, string> dictionary)
         {
             string userCreateWord;
             string userCreateMeanindOfWord;
@@ -51,39 +52,49 @@ namespace Biblioteka
             Console.Clear();
             Console.WriteLine($"Введите слово:");
             userCreateWord = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine($"Введите значение для этого слова:");
-            userCreateMeanindOfWord = Console.ReadLine();
-            createDictionary.Add(userCreateWord, userCreateMeanindOfWord);
+            if (dictionary.ContainsKey(userCreateWord))
+            {
+                ReportAnError("Такое слово уже существует.");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"Введите значение для этого слова:");
+                userCreateMeanindOfWord = Console.ReadLine();
+                dictionary.Add(userCreateWord, userCreateMeanindOfWord);
+            }
         }
 
-        static void FindMeaningOfWord(Dictionary<string, string> createDictionary)
+        static void FindMeaningOfWord(Dictionary<string, string> dictionary)
         {
             string userInputWord;
 
             Console.Clear();
 
-            if (createDictionary.LongCount() == 0)
+            if (dictionary.LongCount() == 0)
             {
-                Console.WriteLine($"Словарь пустой, заполните словарь!");
-                Console.ReadKey();
+                ReportAnError("Словарь пустой, заполните словарь!");
             }
             else
             {
                 Console.Write($"Показать значение слова: ");
                 userInputWord = Console.ReadLine();
 
-                if (createDictionary.ContainsKey(userInputWord))
+                if (dictionary.ContainsKey(userInputWord))
                 {
-                    Console.Write($"\\n{createDictionary[userInputWord]}");
+                    Console.Write($"\\n{dictionary[userInputWord]}");
                     Console.ReadKey();
                 }
                 else
                 {
-                    Console.WriteLine("Нет такого слова");
-                    Console.ReadKey();
+                    ReportAnError("Нет такого слова");
                 }
             }
+        }
+        static void ReportAnError(string causeOfError)
+        {
+            Console.WriteLine($"Ошибка ввода. {causeOfError}");
+            Console.ReadKey();
         }
     }
 }
