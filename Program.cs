@@ -8,9 +8,9 @@ namespace Biblioteka
     {
         static void Main(string[] args)
         {
-            const int ConsoleAddWord = 1;
-            const int ConsoleOutputMeaningOfWord = 2;
-            const int ConsoleExit = 3;
+            const int MenuConsoleAddWord = 1;
+            const int MenuConsoleOutputMeaningOfWord = 2;
+            const int MenuConsoleExit = 3;
 
             bool isWork = true;
             int userChoice;
@@ -20,20 +20,20 @@ namespace Biblioteka
             while (isWork)
             {
                 Console.Clear();
-                Console.WriteLine($"\n{ConsoleAddWord}. Добавить слово со значением. \n\n{ConsoleOutputMeaningOfWord}. Вывести значение для слова.\n\n{ConsoleExit}. Выход.");
+                Console.WriteLine($"\n{MenuConsoleAddWord}. Добавить слово со значением. \n\n{MenuConsoleOutputMeaningOfWord}. Вывести значение для слова.\n\n{MenuConsoleExit}. Выход.");
                 userChoice = Convert.ToInt32(Console.ReadLine());
 
                 switch (userChoice)
                 {
-                    case ConsoleAddWord:
+                    case MenuConsoleAddWord:
                         AddWord(dictionary);
                         break;
 
-                    case ConsoleOutputMeaningOfWord:
+                    case MenuConsoleOutputMeaningOfWord:
                         FindMeaningOfWord(dictionary);
                         break;
 
-                    case ConsoleExit:
+                    case MenuConsoleExit:
                         isWork = false;
                         break;
 
@@ -52,6 +52,7 @@ namespace Biblioteka
             Console.Clear();
             Console.WriteLine($"Введите слово:");
             userCreateWord = Console.ReadLine();
+
             if (dictionary.ContainsKey(userCreateWord))
             {
                 ReportAnError("Такое слово уже существует.");
@@ -91,6 +92,7 @@ namespace Biblioteka
                 }
             }
         }
+
         static void ReportAnError(string causeOfError)
         {
             Console.WriteLine($"Ошибка ввода. {causeOfError}");
